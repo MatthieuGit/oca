@@ -94,7 +94,23 @@ Exemple String string = "animals";
 		Sysout(string.indexOf("al")); // 4
 		Sysout(string.indexOf('a',4)); // 4
 		Sysout(string.indexOf("al" , 5)); // -1
-		
+----------------------------------------------------------------------------------------------------------------
+
+subString : méthode retournant une nouvelle string contenant une sous séquence de caractères actuellement contenu dans cette séquence
+---------- La sous séquence commence à l'index de départ, et s'etend jusqu'a l'index de fin -1
+
+Signature: String subString(int beginIndex);
+---------  String subString(int beginIndex, int endIndex);
+
+Exemple : String string = "animals";
+		  Sysout(string.substring(3)); // ani[mals
+		  Sysout(string.substring(String.indexOf('m')); // ani[mals
+		  Sysout(string.substring(3,4)); // ani[m[als m
+ 		  Sysout(string.substring(3, 7)); // ani[mals  //mals
+Piéges :
+		  Sysout(string.substring(3, 3)); //Empty String
+		  Sysout(string.substring(3, 2)); // throws exceptions
+		  Sysout(string.substring(3, 8)); //throws exceptions
 		
 		
 

@@ -1,0 +1,41 @@
+Utilisation de la classe StringBuilder
+--------------------------------------
+
+La classe StringBuilder n'est pas immuable.
+
+Exemple : StringBuilder a = new StringBuilder("abc");
+-------   StringBuilder b = a.append("de");
+		  b = b.append("f").append("g");
+		  System.out.println("a=" + a); //abcdefg
+		  System.out.println("b=" + a); //abcdefg
+		  
+Ici il y a qu'une seule instance de StringBuilder de créé. On le sait car il y a qu'une seule fois le mot "new StringBuilder" d'appelé.
+
+
+--------------------------------------
+La création d'un StringBuilder
+--------------------------------------
+Il y a trois manière de construire un stringBuilder:
+StringBuilder sb1 = new StringBuilder();
+StringBuilder sb2 = new StringBuilder("animal");
+StringBuilder sb3 = new StringBuilder(10);
+		  
+Les méthodes importantes
+Comme pour la classe String :
+il y a charAt() - indexOf() - length() - substring();
+
+Exemple : StringBuilder sb = new StringBuilder("animals");
+			String sub = sb.substring(sb.indexOf("a"), sb.indexOf("al"));  // sb.substring(0,4) //anim
+			int length = sb.length(); //7
+			char ch = sb.charAt(6);//s
+			System.out.println(sub + " " + len + " " + ch); 
+			
+append()
+
+insert()
+
+Delete() and deleteCharAt()
+reverse()
+toString()
+
+Différence 

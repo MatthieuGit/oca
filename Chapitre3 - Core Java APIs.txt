@@ -1,0 +1,103 @@
+La ligne 6 montre qu'un ArrayList sait se convertir en un tableau. Le seul problème est qu'il utilise par défaut un tableau de classe Object. La ligne 8 spécifie le type du tableau et fait ce que nous voulons réellement. L'avantage de spécifier une taille de 0 pour le paramètre est que Java créera un nouveau tableau de la taille appropriée pour la valeur de retour. Si vous le souhaitez, vous pouvez suggérer un plus grand tableau à utiliser à la place. Si le arrayList tient dans ce tableau, il sera renvoyé. Sinon, un nouveau sera créé.
+
+
+La conversion d'un tableau en une liste est plus intéressante. Le tableau d'origine et la liste sauvegardée du tableau créé sont liés. Lorsqu'une modification est apportée à l'une, elle est disponible dans l'autre. C'est une liste de taille fixe et est également connue comme une liste sauvegardée car le tableau change avec lui. Portez une attention particulière aux valeurs ici
+
+Chapitre 3 :  Core Java APIs
+
+Créer et manipuler des Strings
+
+Les parties que l'on verra dans cette section sont :
+
+La concaténation
+L'immuabilité
+La string pool
+Les méthodes communes
+Les méthodes de chainages
+
+I La concaténation
+
+Les 3 règles à savoir concernant la concaténation :
+	- Si les deux opérandes sont des numériques, + signifie une addition numérique.
+	- Si au moins l'une des opérandes est une String, on fait une concaténation.
+	- L'expression est évaluée de la gauche vers la droite
+
+/!\ La concaténation crée un nouvel objet String
+
+Exemple :
+	Sysout(1 + 2); //Régle 1 : Les deux opérandes sont numériques
+	Sysout("a" + "b"); //Régle 2 : concaténation.
+	Sysout(1 + 2 + "c"); // On évalue de gauche à droite ( Régle 3): on commence par additionner 1 + 2 (Régle 1) ce qui donne 3 + "c" (Régle 2 au moins l'une des deux opérandes est une String) = 3c;
+
+Signification de +=
+s +="2";
+s = s + "2";
+
+Exemple : String s = "1";
+s +="2"; //s = s + "2"; //s = "1" + "2"; //s = "12";
+s +=3; //s = "12" + 3 // s = "123";
+
+
+II L'immuabilité
+
+L'immuabilité signifie invariable, c'est à dire non modifiable.
+Les Strings sont des objets immuables, une fois crée, ils ne peuvent plus être modifiés.
+
+III La String pool
+
+La string pool est un endroit dans la JVM qui collecte toute les string qui sont crées sans l'aide du mot clé new
+Par exemple 
+	String ocaTest = "niveau 1 de java";
+Cette déclaration va directement dans la String pool.
+Les strings qui ne vont pas dans la string pool peuvent etre soumis au garbage collector.
+
+IV Les méthodes importantes de String
+
+Une string est une séquence de caractères et java les compte à partir de l'index 0;
+
+Exemple 
+
+		A N I M A L S
+		0 1 2 3 4 5 6
+		
+Length(): la méthode length() renvoie le nombre de caractères contenu dans une String.
+--------
+Signature : int length();
+----------
+
+Exemple String string = "animals";
+		Sysout(string.length()); // 7
+Quand on determine une taille ou une longueur java ne commence pas de compter à partir de 0, mais à partir de 1.
+
+----------------------------------------------------------------------------------------------------------------
+
+charAt(): La méthode charAt() requête la string pour trouver quels caractères est à l'index spécifié.
+--------
+Signature: char charAt(int index);
+---------
+
+Exemple String string = "animals";
+		Sysout(string.charAt(0)); // a
+		Sysout(string.charAt(6)); // s
+		Sysout(string.charAt(7)); // throws exceptions StringOutOfBoundsException
+------------------------------------------------------------------------------------------------------------------
+
+indexOf(): La méthode indexOf cherche les caractères dans la string and trouve le premier index qui correspond à la valeur attendue.
+---------
+Signature: int indexOf(char ch);
+---------  int indexOf(char ch, int fromIndex);
+		   int indexOf(String str);
+		   int indexOf(String str, index fromIndex);
+		   
+Exemple String string = "animals";
+		Sysout(string.indexOf('a')); // 0
+		Sysout(string.indexOf("al")); // 4
+		Sysout(string.indexOf('a',4)); // 4
+		Sysout(string.indexOf("al" , 5)); // -1
+		
+		
+		
+
+	
+
+

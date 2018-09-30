@@ -1,0 +1,51 @@
+﻿Comprèhension de l'égalité
+--------------------------------------
+
+Au chapitre 2, vous avez appris à utiliser == pour comparer les nombres et les références aux objets se rapportant au même objet
+
+Exemple 1
+
+StringBuilder one = new StringBuilder();
+StringBuilder two = new StringBuilder();
+StringBuilder three = one.append("a");
+System.out.println(one == two); //false
+System.out.println(one == three); //true
+
+
+Comme cet exemple ne concerne pas les primitives, nous savons si les références font référence au même objet.
+One et two sont des objets completement séparés. StringBuilder nous donnant deux objets.
+
+Ainsi la première déclaration nous donne false;
+En revanche les méthodes liés au stringBuilder retourne la référence courante. Cela signifie que one et three pointent sur le même objet.
+
+Exemple 2
+
+String x = "Hello World";
+String y = "Hello World";
+
+System.out.println(x == y); // true
+
+Il faut se souvenir que les string sont immuables et que les chaines déclarés de cette manière (sans new) sont intégrés dans le string pool.
+La JVM crée seulement une chaine en mémoire.
+
+Exemple 3
+
+String x = "Hello World";
+String z = " Hello World".trim();
+System.out.println( x == z); //false
+
+Dans cet exemple, nous n'avons pas les mêmes String, 
+Bien que x et z parviennent à évaluer la même chaîne, l'une est calculée à l'exécution
+Comme ce n'est pas la même à la compilation, un nouvel objet String est créé.
+
+
+Nous avons vu auparavant, que nous pouvons dire que l'on préfere avoir une égalité logique plutôt qu'une égalité d'objet
+
+String x = "Hello World";
+String z = "	Hello World".trim();
+System.out.println(x.equals(z)); //true
+
+Cela fonctionne car les auteurs de la classe String ont implémenté une méthode standard appelée equals pour vérifier la valeur des caractères à l'intérieur de la chaine plutot que l'object en lui même.
+Si une classe n'a pas implémenté la méthode equals, Java determine si les références pointent sur le même objet --  ce que fait exactement ==.
+
+La classe StringBuilder n'implémente pas la méthode equals, si tu appelles la méthode equals pour comparer des StringBuilder, il va comparer les références.  

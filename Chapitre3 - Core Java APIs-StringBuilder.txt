@@ -1,4 +1,4 @@
-Utilisation de la classe StringBuilder
+﻿Utilisation de la classe StringBuilder
 --------------------------------------
 
 La classe StringBuilder n'est pas immuable.
@@ -21,6 +21,7 @@ StringBuilder sb2 = new StringBuilder("animal");
 StringBuilder sb3 = new StringBuilder(10);
 		  
 Les méthodes importantes
+--------------------------------------
 Comme pour la classe String :
 il y a charAt() - indexOf() - length() - substring();
 
@@ -29,13 +30,59 @@ Exemple : StringBuilder sb = new StringBuilder("animals");
 			int length = sb.length(); //7
 			char ch = sb.charAt(6);//s
 			System.out.println(sub + " " + len + " " + ch); 
-			
-append()
+-------------------------------------------------------------------------------------------------------			
+append() : La méthode append est très frequement utilisée, elle ajoute des valeurs à la suite du stringBuilder et retourne une référence du stringbuilder actuel
+Signature :  StringBuilder append(String str)
 
-insert()
+Exemple : StringBuilder sb = new StringBuilder().append(1).append('c');
+sb.append("-").append(true);
+System.out.println(sb); //1c-true
 
-Delete() and deleteCharAt()
-reverse()
-toString()
+En utilisant la méthode append, il n'y a pas besoin de se soucier de convertir les paramètres en string.
+-------------------------------------------------------------------------------------------------------
 
-Différence 
+insert() : La méthode insert ajoute des caractères au stringBuilder à l'index renseigné, et retourne une référence du stringBuilder courant.
+
+Signature : StringBuilder insert(int offset, String str);
+
+/!\ il faut faire attention à l'index (offset) renseigné
+
+Exemple : StringBuilder sb = new  StringBuilder("animals");
+		  sb.insert(7, "-"); // sb = "animals-";
+		  sb.insert(0, "-"); // sb = "-animals-";
+		  sb.insert(4, "-"); // sb = "-ani-mals-";
+		  
+/!\ Important quand tu vois une question avec des inserts il faut dessiner les étapes pour ne pas perdre le fil 
+-------------------------------------------------------------------------------------------------------
+
+delete() and deleteCharAt() :  la méthode delete() est l'opposé de la méthode insert(). Elle supprime les caractères depuis la séquence renseignée et retourne une référence du stringBuilder actuel. La méthode deleteCharAt est appropriée quand tu veux supprimer seulement un caractère.
+
+Signature : StringBuilder delete(int start, int end)
+			StringBuilder deleteCharAt(int index)
+
+Exemple : StringBuilder sb = new StringBuilder("abcdef");
+		  sb.delete(1,3); //sb="adef";
+		  sb.deleteCharAt(5); // throws an exception
+
+-------------------------------------------------------------------------------------------------------
+reverse() : La méthode reverse() inverse l'ordre des caractères d'une chaine
+
+Signature : StringBuilder reverse();
+
+Exemple : StringBuilder sb = new StringBuilder("ABC");
+		  sb.reverse();
+		  System.out.println(sb);
+-------------------------------------------------------------------------------------------------------
+toString() :  La méthode toString convertie un StringBuilder en string.
+
+Signature : String toString();
+
+Exemple : String string = sb.toString();
+-------------------------------------------------------------------------------------------------------
+
+Différence entre StringBuilder et StringBuffer
+
+Il est fortement recommandé quand on veut concatener des String d'utiliser StringBuilder.
+StringBuffer fait la même chose que StringBuilder, mais plus lentement, car il est thread-safe.
+
+-------------------------------------------------------------------------------------------------------

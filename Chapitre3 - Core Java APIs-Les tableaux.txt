@@ -1,0 +1,197 @@
+﻿Comprendre les tableaux java
+
+Un tableau est une liste ordonnée. Il peut contenir des doublons.
+
+Cette section va nous apprendre à  :
+	- créer un tableau contenant des types primitifs ou des objets
+	- Trier un tableau
+	- chercher dans un tableau
+	- les variables arguements lists
+	- et les tableaux multidimensionnels
+	
+Créer un tableau contenant des types primitifs.
+----------------------------------------------------
+
+
+int[] numbers1 = new int [3];
+
+int : représente le type du tableau
+[] : indique que c'est un tableau (ils sont obligatoire)
+[3] : représente la taille du tableau
+
+Quand un tableau est instancié de cette manière, tout les éléments sont définis avec leur valeur par défaut pour le type.
+Ainsi la valeur par défaut d'un int est 0. 
+numbers1 représente une référence à l'objet tableau
+
+		elements	0	0	0
+		index		0	1	2
+		
+Une autre manière de créer un tableau :
+---------------------------------------
+int[] numbers2 = new int[] {42, 55, 99};
+
+Cette fois, nous initialisons le tableau avec des valeurs 
+
+	Elements	42	55	99
+	index		0	1	2
+		
+
+Java reconnait que cette manière de déclarer un tableau est redondante.
+On peut utiliser cette manière :
+int[] numbers2 = {42, 55, 99};
+
+on appelle cette manière un tableau anonyme. Car on ne spécifie pas la taille, ni le type
+
+
+Les autres manière légales de déclarer un tableau
+int [] numAnimals;
+int[] numAnimals2;
+int numAnimals3[];
+int numAnimals4 [];
+
+
+Créer un tableau contenant des objets
+----------------------------------------
+
+String [] bugs = {"cricket","spider","beetle"};
+String [] alias = {"cricket","spider","beetle"};
+ 
+System.out.println(bugs.equals(alias); //true
+
+Un tableau ne redéfinie pas la méthode equals, ainsi elle teste la référence d'un objet et non le contenu de la référence de l'objet
+
+
+Un tableau n'alloue pas de l'espace pour un objet de type String, mais il alloue de la référence ou les objets seront réellement stockés.
+
+Ainsi par défaut, un tableau tel quel : 
+
+String names[] = new String[2];
+
+Instancie un tableau de type String, la valeur par défaut d'un objet est null, il a la capacité de stocker deux objets de type String.
+
+Exemple de piége
+String [] strings = {"stringValue"};
+Object[] objects = strings;
+String[] againStrings = (String[]) objects;
+againStrings[0] = new StringBuilder(); // Does not compile parce que againString[0] est de type String, on veut lui affecter un StringBuilder();
+objects[0] = new StringBuilder(); //On peut penser que ça puisse fonctionner, mais il ne faut SURTOUT PAS OUBLIER que object[0] est issue initialement d'un tableau de String
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilisation d'un tableau
+------------------------
+
+Maintenant que l'on sait créer un tableau, regardons comment peut on y acceder.
+String[] mammals = {"monkeys", "chimp", "donkey"};
+System.out.println(mammals.length);
+System.out.println(mammals[0]);
+System.out.println(mammals[1]);
+
+
+La 1er ligne déclare un tableau
+La seconde ligne affiche la taille du tableau
+La 3eme et 4eme ligne affichent les deux premiers éléments du tableau.
+On commence à compter dans un tableau à partir de 0.
+
+/!\ lors de l'examen les pièges concernant un tableau sont les faits suivants;
+	-essayer d'accèder à une partie du tableau n'etant pas à l'intérieur de celui-ci.
+
+Exemple : 
+int[] numbers = new int[10];
+
+numbers[10] = 3 //numbers[10] est en dehors du périmtre du tableau car on compte de 0 à 9
+numbers[numbers.length] = 5; //numbers[10]
+for (int i=0; i<=numbers.length; i++) numbers[i] = i+5  //on atteindra la longueur de 10
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Trier un tableau
+----------------
+Pour trier un tableau, on doit importer le package 
+import java.util.*;
+import java.util.Arrays;
+
+/!\ Se Souvenir que si tu vois un extrait de code avec une ligne ne commencant pas par 1, tu peux affirmer que l'import est bien réalisé.
+
+int[] numbers = {12,14,2};
+Arrays.sort(numbers);
+System.out.println(Arrays.toString(numbers));
+
+Trier un tableau de String
+--------------------------
+
+String[] strings = {"10", "9", "100", "19"};
+Arrays.sort(strings);
+System.out.println(Arrays.toString(arrayString)); //[10, 100, 19, 9]
+
+0 1 2 3 4 5 6 7 8 9
+Pour effectuer le trie, on prend chaque chiffre on se référe à la liste décimal
+le 1 est situé avant le 9
+le 0 est situé avant le 9
+
+------------------------------------------
+La recherche dans un tableau
+
+int[] numbers = {2,4,6,8};
+System.out.println(Arrays.binarySearch(numbers,2); //0
+System.out.println(Arrays.binarySearch(numbers,4); //1
+System.out.println(Arrays.binarySearch(numbers,1); //On prend l'index ou le chiffre aurait du se positionner ici 0 on le rend négatif donc 0 reste 0 et on soustrait 1 --> -1
+System.out.println(Arrays.binarySearch(numbers,3); //l'index aurait du etre 1 on le rend négativ donc -1 et on soustrait -1 --> -2
+System.out.println(Arrays.binarySearch(numbers,9); //L'index aurait du être 4 on le rend négatif donc -4 et on soustrait 1 --> -4-1 -5
+
+/!\ La recherche ne peut s'effectuer que sur un tableau trier
+Ici int[] numbers = new int[] {3,2,1}
+System.out.println(Arrays.binarySearch(numbers,2);
+System.out.println(Arrays.binarySearch(numbers,3);
+
+Le resultat est qu'on ne peut pas prédire le résultat.
+------------------------------------------------------------
+
+Varargs
+une autre syntax pour écrire un tableau :
+public sttic void main(String... args)
+
+
+-----------------------------------------------------------------
+Les tableaux multidimensionnels.
+
+Création d'un tableau multidimensionnels
+----------------------------------------
+int[][] vars1; //2D array;
+int vars2 [][]; //2d array;
+int[] vars3[];  //2d array;
+int[] vars4[], space[][]; //2d array and 3d array
+
+On peut créer un tableau en spécifiant la taille 
+String[][] rectangle = new String[3][2]; // rectangle de 3 éléments chacun des éléments contient 2 éléments;
+
+
+int[][] differentSize = {{1,4},{3},{9,8,7}};
+C'est un tableau de 3 éléments. Cependant les éléments du prochain stade, ne sont pas tous de la même taille. 
+Le premier contient 2 éléments, le suivant 1, le dernier 3 éléments.
+
+une dernier façon de créer un tableau multidimensionnels est le suivant :
+int [][] args = new int[4][];
+args[0] = new int[5];
+args[1] = new int[3];
+
+
+L'accès a un tableau multidimensionnels
+int[][] twoD = new int[3][2];
+for (int i = 0; i < twoD.length; i++) {
+	for (int j = 0; j < twoD[i].length; j++) {
+		System.out.println(twoD[i][j] + " ");
+	}
+	System.out.println();
+}
+
+for (int[] inner : twoD) {
+	for (int num : inner) {
+		System.out.println(num + " ");
+	}
+	System.out.println();
+}
+
+
+
+
+

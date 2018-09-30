@@ -1,0 +1,35 @@
+Comprendre les ArrayList.
+
+Une ArrayList est une liste ordonnée qui permet les doublons.
+
+Comme pour les tableaux, on peut utiliser des packages pour trier une arrayList
+	import java.util.*;
+	import java.util.ArrayList;
+	
+Dans cette section, nous verrons les étapes suivantes :
+	- la création d'une ArrayList
+	- les méthodes communes
+	- L'autoboxing
+	- les conversions
+	- et le trie.
+	
+La création d'une ArrayList
+---------------------------
+
+Il y a trois manière de créer des ArrayList :
+	ArrayList list1 = new ArrayList();  //créer une arrayList contenant un espace par défaut d'élément mais ne les rempli pas 
+	ArrayList list2 = new ArrayList(10); // la seconde crée une liste de dix éléments mais ne les rempli pas.
+	ArrayList list3 = new ArrayList(list2); la dernière crée une copie de la list2.
+	
+Une autre manière de créer des arrayList a été introduit par Java 5 .
+Il permet de spécifier le type d'arrayList que l'on va créer.
+ArrayList<String> list4 = new ArrayList<String>();
+ArrayList<String> list5 = new ArrayList<>();
+
+A partir de java 7, on peut supprimer le type du coté droit. On appelle ça le l'operateur diamand <>
+
+Une arrayList implémente une interface appellé List.
+
+List<String> list6c= new ArrayList<>();
+ArrayList<String> list7 = new List<>(); //Does not compile
+

@@ -33,3 +33,136 @@ Une arrayList implémente une interface appellé List.
 List<String> list6c= new ArrayList<>();
 ArrayList<String> list7 = new List<>(); //Does not compile
 
+Utilisation d'une arrayList
+
+les méthodes : 
+--------------
+
+add(): add insere une nouvelle valeur dans l'arrayList.
+----
+Signature:  boolean add (E element) - void add(int index, E element)
+----------
+le boolean dans la signature retourne toujours true
+la méthode add() est importante à retenir  pour l'examen.
+Voici quelques exemples :
+ArrayList list = new ArrayList();
+list.add("hawk");  //[hawk]
+list.add(Boolean.TRUE); //[hawk, true]
+System.out.println(list); [hawk, true]
+
+Ici nous avons spécifier aucun type pour l'arrayList, elle accepte tout les types d'objets.
+Excepté les primitifs.
+
+Maintenant spécifions, un type pour notre ArrayList
+
+ArrayList<String> safer = new ArrayList<>();
+safer.add("sparrow");
+safer.add(Boolean.TRUE); //Does not compile
+
+Ici un objet de type String est attendu.
+
+Derniere étape, ajouter des éléments avec des index 
+List<String> birds = new ArrayList<>();
+birds.add("hawk"); //[hawk]
+birds.add(1,"robin"); //[hawk, robin]
+birds.add(0, "blue jay"); //[blue jay, hawk, robin]
+birds.add(1, "cardinal"); //[blue jay, cardinal, hawk, robin]
+
+
+/!\ Quand il y a une question avec la méthode add, il faut absolument faire un dessin pour ne pas perdre le fil.
+
+---------------------------------------------------------------------------------------------------------------------
+
+remove(): la méthode remove() supprime la 1er valeur qui correspond à la variable passé en paramètre, ou bien supprime la valeur passé en index .
+--------
+signature : boolean remove(Object object) - E remove(int index)
+----------
+
+List<String> birds = new ArrayList<>();
+birds.add("hawk"); //[hawk]
+birds.add("hawk"); //[hawk, hawk]
+System.out.println(birds.remove("cardinal")); //prints false
+System.out.println(birds.remove("hawk")); //prints true
+
+System.out.println(birds.remove(0)); //prints hawk
+
+Si on remove avec un index qui n'existe pas --> exception
+--------------------------------------------------------------------------------------------------------------------------
+
+set() :  la méthode set remplace un des éléments de la liste, sans changer la taille ( elle remplace l'élément spécifié)
+------
+Signature : E set(int index, E newElement);
+-----------
+List<String> birds = new ArrayList<>();
+birds.add("hawk"); //[hawk]
+System.out.println(birds.size()); //1
+birds.set(0, robin); //[robin]
+System.out.println(birds.size()); //1
+birds.set(1, "robin"); //IndexOutOfBoundsException
+
+On ajoute un objet dans la liste, on remplace l'objet à l'index 0, et on essaie de remplacer un objet qui n'existe pas dans la liste donc erreur.
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+isEmpty and size() :les méthodes regardent le nombre de slots en utilisation.
+--------------------
+Signature : int size()
+			boolean isEmpty() 
+			
+			
+System.out.println(birds.size()); //0
+System.out.println(birds.isEmpty()); //true
+birds.add("hawk"); //[hawk]
+birds.add("hawk"); //[hawk,hawk]
+
+System.out.println(birds.size()); //2
+System.out.println(birds.isEmpty()); //false
+----------------------------------------------------------------------------------
+
+clear() :  la méthode clear supprime toutes les données qui sont à l'intérieur d'une arrayList
+signature : void clear()
+
+List<String> birds = new ArrayList<>();
+birds.add("hawk"); //[hawk]
+birds.add("hawk"); //[hawk, hawk]
+System.out.println(birds.size()); //2
+System.out.println(birds.isEmpty()); //false
+birds.clear();
+System.out.println(birds.isEmpty()); true
+System.out.println(birds.size()); //0
+---------------------------------------------------------------------------------------
+
+contains() :  elle verifie si certaines valeurs sont contenus dans la list
+signature : boolean contains(Object object)
+
+List<String> birds = new ArrayList<>();
+birds.add("hawk"); //[hawk]
+System.out.println(birds.contains("hawk")); true
+System.out.println(birds.contains("robin")); //False
+
+cette méthode appelle la méthode equals() sur chaque élément de la list pour voir si il y a une correspondance.
+Puisque String implémente la méthode equals, cela fonctionne bien .
+-----------------------------------------------------------------------------------------------------------------
+
+equals() :  Pour finir ArrayList implémente la méthode equals, on peut ainsi comparer deux listes pour voir si leur contenu est le meme dans le même ordre
+signature : boolean equals(Object object)
+
+List<String> one = new ArrayList<>();
+List<String> two = new ArrayList<>();
+
+System.out.println(one.equals(two)); // true
+one.add("a");
+System.out.println(one.equals(two)); // false
+two.add("a");
+System.out.println(one.equals(two)); // true
+one.add("b"); 	//[a,b]
+two.add(0,"b"); //[b,a]
+System.out.println(one.equals(two));  //false
+
+
+
+
+
+
+
+
+

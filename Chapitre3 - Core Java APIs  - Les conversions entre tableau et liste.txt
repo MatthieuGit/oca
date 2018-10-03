@@ -1,0 +1,30 @@
+Les conversions entre tableaux et listes
+
+List<String> list = new ArrayList<>();
+list.add("hawk");
+list.add("robin");
+Object[] objectArray = list.toArray();
+System.out.println(objectArray.length); //2
+String[] stringArray = list.toArray(new String[0]);
+System.out.println(stringArray.length); //2
+
+
+La ligne 6 montre qu'un ArrayList sait se convertir en un tableau. Le seul problème est qu'il utilise par défaut un tableau de classe Object. La ligne 8 spécifie le type du tableau et fait ce que nous voulons réellement. L'avantage de spécifier une taille de 0 pour le paramètre est que Java créera un nouveau tableau de la taille appropriée pour la valeur de retour. Si vous le souhaitez, vous pouvez suggérer un plus grand tableau à utiliser à la place. Si le arrayList tient dans ce tableau, il sera renvoyé. Sinon, un nouveau sera créé.
+
+
+La conversion d'un tableau en une liste est plus intéressante. Le tableau d'origine et la liste sauvegardée du tableau créé sont liés. Lorsqu'une modification est apportée à l'une, elle est disponible dans l'autre. C'est une liste de taille fixe et est également connue comme une liste sauvegardée car le tableau change avec lui. Portez une attention particulière aux valeurs ici
+
+String [] array = {"hawk","robin"};
+List<String> list = Arrays.asList(array); // retourne une liste de taille fixe 
+System.out.println(list.size()); //2
+list.set(1, "test"); //["hawk","test"]
+array[0] = "new"; //["new","test"]
+for (String b : list) {
+	System.out.println(b + " "); //new test
+}
+list.remove(1);  // throws UnsupportedOperation Exception
+
+Array
+
+
+

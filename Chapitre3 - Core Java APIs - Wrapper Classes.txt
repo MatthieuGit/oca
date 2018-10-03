@@ -1,0 +1,45 @@
+Les Wrapper Classes
+
+Les wrapper classes sont des classes correspondant aux types primitifs.
+
+Les wrappes classes ont des méthodes permettant de convertir des objets en types primitifs et vice versa.
+
+Par exemple :
+int primitive = Integer.parseInt("123");  // On converti une chaine de caractères en type primitif
+Integer wrapper = Integer.valueOf("123"); // On converti une chaine de caractères en Integer
+
+exemple qui ne fonctionne pas 
+int bad1 = Integer.parseInt("a"); //lettre non autorisé pour convertir en entier
+Integer bad2 = Integer.valueOf("123.45"); //on ne peut pas convertir en entier car, il y a des virgules
+
+Tableau de conversion de String à une primitive et de String à une wrapper classe
+Wrapper classe				Converting String to primitive 				Converting String to wrapper classe
+Boolean 					Boolean.parseBoolean("true");				Boolean.valueOf("TRUE");
+Byte						Byte.parseByte("1");						Byte.valueOf("2");
+Short						Short.parseShort("1");						Short.valueOf("2");
+
+
+L'autoboxing
+
+Depuis java 5, l'autoboxing est mis en place, il permet de convertir directement un type primitif en une wrapper classes.
+
+List<Double> weights = new ArrayList<>();
+weights.add(50.5); //[50.5]
+weights.add(new Double(60)); //[50.5, 60.0]
+weights.remove(50.5); //[60.0]
+double first = weights.get(0); //60.0
+
+L27 : java autoboxe le type primitif double en classe de type Double
+L28 : on peut directement déclarer un nouvel objet de type Double
+L29 : java autoboxe de nouveau le type primitif 50.5 en classe Double puis appele la méthode remove();
+L30 : récupere un objet de type Double et l'autoboxe en double
+
+Exemple :
+List<Integer> heights = new ArrayList<>();
+heights.add(null);
+int h = heights.get(0) // NullPointerException
+
+La L39 ajoute null à la liste. C'est possible car une référence null peut etre assignée à n'importe quelle variable de reference.
+En revanche la L40, unbox null en un type primitif int. ce n'est pas posssible.
+
+

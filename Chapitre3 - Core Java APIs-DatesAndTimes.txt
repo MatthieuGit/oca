@@ -1,0 +1,121 @@
+﻿Travailler avec les Dates et les heures
+--------------------------------------
+
+Pour travailler avec les dates et les heures, il faut importer le package :
+import java.time.*;
+
+Dans cette section nous allons voir comment créer, manipuler et formatter des dates et des heures.
+
+Créer des dates et des heures
+----------------------------
+Quand on travaille avec des dates et des heures, la première chose à faire est de décider de combien d'information tu as besoin.
+
+L'examen propose 3 solutions : 
+ -LocalDate : Contient juste une date -- Pas de temps ni de timezone.
+ -LocalTime : Contient juste une heure -- Pas de date ni de timezone.(faisceau horaire)
+ -LocalDateTime : Contient une date et une heure mais pas de faisceau horaire.
+ 
+ Oracle déconseille de bosser avec des faisceaux horaires, mais si il y a vraiment le besoin il faut  les manipuler ZonedDateTime.
+ 
+
+Exemple : 
+System.out.println(LocalDate.now()); Une date sans heure
+System.out.println(LocalTime.now()); une heure sans date affiche lh'eure, les minutes, les secondes, les millisecondes, et les nanosecondes.
+System.out.println(LocalDateTIme.now()); Une date et une heure
+
+Chacune de ces classes ont une méthode static : now(). elle donne la date et l'heure courante.
+
+
+l'objet LocalDate
+-----------------
+LocalDate date1 = LocalDate.of(2015, Month.JANUARY, 20);
+LocalDate date2 = LocalDate.of(2015, 1, 20);
+
+// Remarque : on commence à compter le mois à partir de 1.
+
+
+l'objet LocalTime
+-----------------
+LocalTime time1 = LocalTime.of(6, 15); //heure et minute
+LocalTime time2 = LocalTime.of(6, 15, 30); //heure et minute et secondes
+LocalTime time3 = LocalTime.of(6, 15, 30, 200); //heure et minute, secondes, nanosecondes.
+
+
+l'objet LocalDateTime
+---------------------
+LocalDateTime dateTime1 = LocalDateTime.of(2015, Month.JANUARY, 20, 6, 15, 30);
+LocalDateTime dateTime2 = LocalDateTime.of(date1, time1);
+
+/!\ Les objets suivants, n'ont pas de constructeurs privés, ils forcent l'utilisation des méthodes statiques. On va essayé de te pièger en faisant ça :
+LocalDate d = new LocalDate(); //does not compile
+
+le fait de passer, une date pas connu, remonte une exception
+
+
+Manipuler les dates et les heures
+---------------------------------
+
+Il faut se souvenir que les objets dates et heures sont immuables.
+
+Il faut se souvenir que l'on doit stocker le resultat de l'assignement dans une variable de référence.
+
+LocalDate date = LocalDate.of(2014, Month.JANUARY, 20);
+System.out.println(date); //2014-01-20
+date = date.plusDays(2);
+System.out.println(date); //2014-01-22
+date = date.plusWeeks(1);
+System.out.println(date); //2014-01-29
+date = date.plusMonths(1);
+System.out.println(date); //2014-02-28
+date = date.plusYear(5);
+System.out.println(date); //2019-02-28
+
+On commence avec une date du 20 janvier 2014.
+on ajoute deux jours et on réassigne à la variable de référence date.
+Ensuite on ajoute une semaine.
+Java sait lorsqu'on est une année bisextile.
+
+Autre exemple 
+LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+LocalTime time = LocalTime.of(5, 15);
+LocalDateTime dateTime = LocalDateTime.of(date,time);
+System.out.println(dateTime); //2020-01-20T05:15
+dateTime = dateTime.minusDays(1);
+System.out.println(dateTime); //2020-01-19T05:15
+dateTime = dateTime.minusHour(10);
+System.out.println(dateTime); //2020-01-19T19:15
+dateTime = dateTime.minusSeconds(30);
+System.out.println(dateTime);//2020-01-19T19:14:30
+
+Il est commun pour une date de chainer les méthodes :
+LocalDate date = LocalDate.of(2020, Month.JANUARY,20);
+LocalTime time = LocalTime.of(5, 15);
+LocalDateTime dateTime = LocalDateTime.of(date,time).minusDays(1).minusHour(10).minusSeconds(30);
+
+/!\ les pièges de l'examen sont :
+LocalDate date = LocalDate.of(2020, Month.JANUARY,20);
+date.plusDays(10);
+System.out.println(date); //une date est immuable, il faut réassigner sa valeur à une variable de référence
+
+LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+date = date.plusMinutes(1); //ne peut pas compiler car on ne peut pas ajouter des minutes à juste une date
+
+Il faut absolument connaitre les méthodes suivantes :
+
+						Peut etre appelée sur LocalDate ?			Peut etre appelée sur LocalTime ?					Peut etre appelée sur LocalDateTime ?
+
+plusYears/MinusYear				oui												non													oui
+plusMonths/minusMonths			oui												non													oui
+plusWeeks/minusWeeks			oui												non													oui
+plusDays/minusDays				oui												non													oui
+plusHours/minusHours			non												oui													oui
+plusMinutes/minusMinutes		non												oui													oui
+plusSeconds/minusSeconds		non												oui													oui
+plusNanos/minusNanos			non												oui													oui
+
+
+	
+
+
+
+

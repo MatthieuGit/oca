@@ -1,0 +1,92 @@
+Ce chapitre va parler des variables d'instances, du mot clés final, des modificateurs d'accès, et de l'initialisation.
+On apprendra aussi à écrire une expression lambda.
+
+Designing method : 
+------------------
+La plupart des programmes java, on une méthode main().
+Nous pouvons écrire aussi d'autres méthodes.
+
+Exemple :  Signature méthode 
+	public final void nap(int minutes) throws InterruptedException {
+		//take a nap
+
+	}
+public :  EN : acces modifier : FR : le modificateur d'accès  Requis : Non
+--------
+final : le spécificateur optionel Requis : Non
+------
+void : le type de retour : Requis : Oui
+-----
+nap :  le nom de la méthode Requis : Oui
+----
+() parenthèses obligatoire  Requis : oui
+--------------------------
+int minutes :  la liste des paramètres Requis : Pas obligatoire, juste les parenthèses
+throws : exception (optionel) : Requis : non
+
+
+Les modificateurs d'accès :
+--------------------------
+
+Java a 4 modificateurs d'accès :
+
+On ne peut avoir qu'un modificateur d'accès
+
+public : La méthode peut etre appelée depuis n'importe quelle classe.
+-------
+
+private : La méthode peut etre appelée seulement à l'intérieur de la classe.
+-------
+
+protected : la méthode peut etre appelée par les autres classes issus du meme package et les classes filles 
+---------
+
+Default acces : La méthode peut seulement etre appelée par des classes du meme package. Il est très piégeux car, il n'a pas de mot clés, Il faut simplement oublier de le mettre dans la -------------	 signature de la méthode
+
+Les piéges que l'on rencontre pour l'examen :
+---------------------------------------------
+public void walk1() {} //ok
+default void walk2() {} //default n'existe pas en tant que modificateur d'accès //does not compile
+void public walk3() {} // DOES NOT COMPILE // parce que le modificateur d'accès ne peut pas etre après le type de retour
+void walk4() // ok
+
+Les spécificateurs optionels :
+---------------------------
+
+On peut avoir plusieurs spécificateurs optionels, quand ça arrive, l'ordre n'a pas d'importance, et puisqu'il n'est pas obligatoire, tu es autorisé de ne pas en avoir.
+On peut avoir 0 ou plusieurs spécificateurs.
+
+static : A savoir 
+abstract : Chapitre 5
+final : Chapitre 5
+synchronised : OCP
+native : not OCA not OCP : utiliser quand on veut intéragir avec du code ecrit dans un autre langage
+strictfp  : 
+
+
+Les piéges que l'on rencontre pour l'examen :
+--------------------------------------------
+public void walk1() {}
+public final void walk2() {}
+public static final void walk3() {}
+public final static void walk4() {}
+public modifier void walk5() {} //Does not compile //modifier n'existe pas
+public void final walk6() // On ne peut pas placer à cet endroit le spécificateur optionel car il est après le type de retour /!\ il faut qu'il soit avant
+final public void walk7() // compile le spécificateur peut etre mis avant le modificateur d'accès.
+
+
+
+Le type de retour :
+-----------------
+
+Le type de retour d'une méthode peut etre un objet java comme String /int. Si il n'y a pas de type de retour, on utilise le mot clé void.
+Le type de retour est obligatoire dans une méthode
+Quand tu vérifies le type de retour, tu dois aussi regarder à l'intérieur de la méthode.
+Une méthode dont le type de retour est autre que void doit avoir le mot clé return à l'intérieur de la méthode.
+Les méthodes qui ont un type de retour de type void, peuvent avoir le mot clé return, mais il n'est pas obligatoire.
+
+Exemple :
+public void walk1() {}
+public void walk2() {return;}
+
+

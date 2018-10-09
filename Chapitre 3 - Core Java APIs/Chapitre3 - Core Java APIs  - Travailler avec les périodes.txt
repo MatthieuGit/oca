@@ -1,0 +1,87 @@
+Travailler avec les périodes
+
+Exemple :  
+	public static void main(String[] args) {
+		LocalDate start = LocalDate.of(2015, Month.January, 1);
+		LocalDate end = LocalDate.of(2015, Month.MARCH, 30);
+		performAnimalEnrichment(start, end);
+	
+	}
+	
+	private static void performAnimalEnrichment(LocalDate start, LocalDate end) {
+	LocalDate upTo = start;
+		while (upTo.isBefore(end) {
+			System.out.println("give new toy: " + upTo);
+			upTo = upTo.plusMonths(1);
+		}
+	}
+Le problème avec ce code, est qu'il n'est pas réutilisable. Pour contrer cela, Java a un objet Period.
+
+public static void main(String[] args) {
+		LocalDate start = LocalDate.of(2015, Month.January, 1);
+		LocalDate end = LocalDate.of(2015, Month.MARCH, 30);
+		Period period = Period.ofMonths(1);
+		performAnimalEnrichment(start, end, period);
+	
+}
+
+private static void performAnimalEnrichment(LocalDate start, LocalDate end, Period period) {
+	LocalDate upTo = start;
+		while (upTo.isBefore(end) {
+			System.out.println("give new toy: " + upTo);
+			upTo = upTo.plus(period);
+		}
+	}
+
+L'objet Period a 5 manières d'etre créé.
+Period annually = Period.ofYears(1);
+Period quaterly = Period.ofMonths(3);
+Period everyThreeWeeks = Period.ofWeeks(3);
+Period everyOtherDay = Period.ofDays(2);
+Period everyYearAndWeek = Period.of(1,0,7);
+
+/!\ piége : On ne peut pas chainer les méthodes avec l'objet Period
+Period wrong = Period.ofYears(1).ofWeeks(1); //every week
+Seulement la derniere méthode est prise en compte
+
+il y aura une compiler warning.
+
+L'objet Period est plus adapté pour les jours ou plus.
+POur ce qui est des heures, des minutes, des secondes, il y a l'objet Duration
+
+
+LocalDate date = LocalDate.of(2015,1,20);
+LocalTime time = LocalTime.of(6,15);
+LocalDateTime dateTime = LocalDateTime.of(date, time);
+Period period = Period.ofMonths(1);
+System.out.println(date.plus(period); //2015-02-20
+System.out.println(dateTime.plus(period)); //2015-02-20T06:15
+System.out.println(time.plus(period)); //UnsupportedTemporalTYpeException
+
+/!\ Il faut etre très vigilant, et regarder si pour chaque type, on peut ajouter des periods ou non
+
+
+Formater des dates et des heures
+--------------------------------
+Les classes Date et time supportent quelques méthodes pour obtenir une partie de leurs données : 
+LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+System.out.println(date.getDayOfWeek()); //Monday
+System.out.println(date.getMonth()); //JANUARY
+System.out.println(date.getYear()); //2020
+System.out.println(date.getDayOfYear()); //20
+
+
+Cependant, java procures une classe appellée DateTimeFormatter qui nous aide à formater n'importe quels type d' objet date et time
+DateTimeFormatter est dans le package 
+java.time.format
+
+LocalDate date = LocalDate.of(2015,Month.JANUARY,20);
+LocalTime time = LocalTime.of(11, 6, 15);
+LocalDateTime dateTime = LocalDateTime.of(date, time);
+
+System.out.println(date.format(DateTimeFormatter.ISO_LOCAL_DATE); // 2015-01-20
+System.out.println(time.format(DateTimeFormatter.ISO_LOCAL_TIME); //11:06:15
+System.out.println(dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME); //2015-01-20T11:06:15
+
+
+

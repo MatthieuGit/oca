@@ -3,7 +3,7 @@ On apprendra aussi à écrire une expression lambda.
 
 Designing method : 
 ------------------
-La plupart des programmes java, on une méthode main().
+La plupart des programmes java, ont une méthode main().
 Nous pouvons écrire aussi d'autres méthodes.
 
 Exemple :  Signature méthode 
@@ -88,5 +88,75 @@ Les méthodes qui ont un type de retour de type void, peuvent avoir le mot clé 
 Exemple :
 public void walk1() {}
 public void walk2() {return;}
+public String walk3() {return "";}
+public String walk4() { } //Does not compile il manque le mot clé return;
+public walk5() {} // Does not compile
+public walk6(int a) {
+	if (a == 4) {
+		return "";
+	}
+	//Does not compile
+}
 
+il faut faire attention aussi au type de retour :
+ Exemple :
+ 
+ int integer() {
+	return 9;
+ }
+int longMethod() {
+	return 9L; //Does not compile
+}
+
+int integerExpanded() {
+	int temp = 9;
+	return temp;
+}
+int longExpanded() {
+	int temp = 9L //Does not compile
+	return temp;
+}
+
+Nom de méthode:
+---------------
+
+le nom de la méthode suit les mêmes regles de nommage que les variables (chapitre 1) :
+Le nom peut seulement contenir des lettrs, des nombres,$, ou -.
+Il ne peut pas commencer par un nombre. et les mots reservés ne sont pas permis.
+Par convention, les méthodes commencent par une lettre en minuscule
+
+
+Exemple :
+public void walk1();
+public void 2walk() {} //Does not compile //interdiction de commencer par un chiffre
+public walk3 void() {} //Does not compile // le type de retour doit etre avant le nom de la méthode
+public void Walk_$() {} //ok // mais par convention il ne faut pas mettre des majuscules
+public void() {} //absence de nom de methode //c'est un mot reservé
+
+
+Les paramètres :
+----------------
+Bien que la liste des paramètres est obligatoire, elle peut etre vide.
+ça signifie que void nap() {} est valide.
+Si il y a des paramètres multiples, il faut les séparer par une virgule.
+il y a aussi un nombre de régle à savoir concernant les paramètres quand nous verrons les varargs.
+
+public void walk1() {}
+public void walk2 {} //parenthèses manquantes.
+public void walk3(int a) { }
+public void walk4(int a ; int b) {} //Does not compile car ;
+public void walk5(int a , int b) {} //ok
+
+
+La liste des exceptions optionelles
+------------------------------------
+En java, le code peut indiquer que quelque chose ne fonctionne pas en remontant une exception.
+Pour le moment, il faut juste savoir que c'est optionel.
+On peut avoir à la suite plusieurs exceptions
+
+Exemple :
+
+public void zeroException() {}
+public void oneException() throws IllegalArgumentException {}
+public void twoException() throws IllegalArgumentException, InterruptedException {}
 

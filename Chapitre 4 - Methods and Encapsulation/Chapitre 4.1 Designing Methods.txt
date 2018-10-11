@@ -160,3 +160,27 @@ public void zeroException() {}
 public void oneException() throws IllegalArgumentException {}
 public void twoException() throws IllegalArgumentException, InterruptedException {}
 
+
+Method body
+------------
+Il s'agit d'un bloque de code, les accolades contiennent 0 ou plusieurs morceaux de codes.
+
+Exemple :
+public void walk1() {}
+public void walk2() ; //manque les accolades
+public void walk3(int a) {int name = 5;}
+
+Travailler avec les varargs
+----------------------------
+
+Une méthode peut utiliser des vargars (variables arguments) comme un tableau. Bien que ce soit différent d'un tableau.
+Un parametre de type varargs doit etre positionné en dernière position. Cela implique tu ne peux avoir qu'un seul vargar dans la liste des paramètres
+
+Exemple :
+public void walk1(int... nums) {} //Possible car seulement 1 paramètre de type varargs 
+public void walk2(int start, int... nums) {} //Possible car 1 parametre de type int et un parametre de type varargs
+public void walk3(int... nums, int start) {} //Does not compile // le parametre varargs doit etre positionné à la fin 
+public void walk3(int... nums, int... start) {} //Does not compile // il ne peut avoir qu'un seul parametre de type varargs.
+
+Quand on appelle une méthode avec un parametre de type varargs, tu peux sois passer un tableau, ou tu peux lister les elements du tableau et laisser java le créer pour toi.
+

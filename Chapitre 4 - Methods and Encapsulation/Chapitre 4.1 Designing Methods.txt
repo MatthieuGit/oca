@@ -121,7 +121,7 @@ Nom de méthode:
 ---------------
 
 le nom de la méthode suit les mêmes regles de nommage que les variables (chapitre 1) :
-Le nom peut seulement contenir des lettrs, des nombres,$, ou -.
+Le nom peut seulement contenir des lettres, des nombres,$, ou -.
 Il ne peut pas commencer par un nombre. et les mots reservés ne sont pas permis.
 Par convention, les méthodes commencent par une lettre en minuscule
 
